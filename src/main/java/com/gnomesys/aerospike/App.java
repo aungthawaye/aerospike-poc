@@ -10,7 +10,7 @@ public class App {
 	public static void main(String args[]) {
 		UserService userService = new UserService();
 
-		for (int i = 3000; i < 40000; i++) {
+		for (int i = 1000; i < 2000; i++) {
 
 			User user = new User();
 			user.setEmail("user" + i + "@somewhere.com");

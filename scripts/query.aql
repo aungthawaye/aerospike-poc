@@ -1,0 +1,1 @@
+select * from test.users in list where heroes = 'Slarder' or heroes = 'Void'
