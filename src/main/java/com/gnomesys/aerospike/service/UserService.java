@@ -1,6 +1,7 @@
 package com.gnomesys.aerospike.service;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import com.aerospike.client.AerospikeClient;
@@ -52,5 +53,9 @@ public class UserService {
 
 		this.aerospikeClient.put(writePolicy, userKey, binUserId, binEmail, binName, binHeroes, binCreatedDate,
 				binUpdatedDate);
+	}
+	
+	public List<User> query(List<String> heroes){
+		return null;
 	}
 }

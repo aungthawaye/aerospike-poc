@@ -1,0 +1,31 @@
+Learning Aerospike UDF
+
+- Types of UDF :
+    1) Record UDF
+    2) Stream UDF
+
+- About Record UDF :
+    1) The Record UDF is function which is applied to a single record only. The first argument will always be a record. The return value can be any supported type, and is returned back to the caller.
+    2) A Record UDF should have one or more arguments
+    3) The first argument will always be a database record (preferred name : 'topRec').
+    4) Each subsequent argument is specific to the UDF and must be one of the types supported by the database: integer, string, list and map.
+    5) A Record UDF can return a single value of any of the types supported by the database: integer, string, list and map.
+
+- Creating Record UDF :
+  1) Create Lua file. Example : helloworld.lua in any directory. Here for this case, I created Lua file in /home/vagrant/lua/helloworld.lua (I am running Aerospike on Mac, so I have to use vagrant)
+     Sample helloworld.lua file:
+
+        function helloworld(topRec)
+            info("record %s", tostring(topRec.myname))
+            return "Hello, " .. tostring(topRec.myname)
+        end
+
+
+  2) Then go to 'aql'. And type :
+        REGISTER MODULE '/home/vagrant/lua/helloworld.lua'
+     It will register Lua module.
+
+  3) Then to execute, go to 'aql' and type :
+        EXECUTE helloworld.helloworld() ON test_ns.my_sets
+
+  4) You can go to /var/log/aerospike/udf.log to see the logs printed from info()
